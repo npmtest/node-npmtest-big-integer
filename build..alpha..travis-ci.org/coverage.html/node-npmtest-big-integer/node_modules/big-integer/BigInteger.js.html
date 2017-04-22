@@ -1,0 +1,3908 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-big-integer/node_modules/big-integer/BigInteger.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-big-integer">npmtest-big-integer (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-big-integer/node_modules/big-integer/BigInteger.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">18.07% <small>(165 / 913)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">1.61% <small>(7 / 435)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">2.78% <small>(3 / 108)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">19.95% <small>(163 / 817)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-big-integer/node_modules/big-integer/</a> &#187; BigInteger.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1108
+1109
+1110
+1111
+1112
+1113
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1121
+1122
+1123
+1124
+1125
+1126
+1127
+1128
+1129
+1130
+1131
+1132
+1133
+1134
+1135
+1136
+1137
+1138
+1139
+1140
+1141
+1142
+1143
+1144
+1145
+1146
+1147
+1148
+1149
+1150
+1151
+1152
+1153
+1154
+1155
+1156
+1157
+1158
+1159
+1160
+1161
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177
+1178
+1179
+1180
+1181
+1182
+1183
+1184
+1185
+1186
+1187
+1188
+1189
+1190
+1191
+1192
+1193
+1194
+1195
+1196
+1197
+1198
+1199
+1200
+1201
+1202
+1203
+1204
+1205
+1206
+1207
+1208
+1209
+1210
+1211
+1212
+1213
+1214
+1215
+1216
+1217
+1218
+1219
+1220
+1221
+1222
+1223
+1224
+1225
+1226
+1227
+1228
+1229</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1999</span>
+<span class="cline-any cline-yes">1999</span>
+<span class="cline-any cline-yes">1999</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1000</span>
+<span class="cline-any cline-yes">1000</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var bigInt = (function (undefined) {
+    "use strict";
+&nbsp;
+    var BASE = 1e7,
+        LOG_BASE = 7,
+        MAX_INT = 9007199254740992,
+        MAX_INT_ARR = smallToArray(MAX_INT),
+        LOG_MAX_INT = Math.log(MAX_INT);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function Integer(v, radix) {</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof v === "undefined") <span class="cstat-no" title="statement not covered" >return Integer[0];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (typeof radix !== "undefined") <span class="cstat-no" title="statement not covered" >return +radix === 10 ? parseValue(v) : parseBase(v, radix);</span></span>
+<span class="cstat-no" title="statement not covered" >        return parseValue(v);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function BigInteger(value, sign) {</span>
+<span class="cstat-no" title="statement not covered" >        this.value = value;</span>
+<span class="cstat-no" title="statement not covered" >        this.sign = sign;</span>
+<span class="cstat-no" title="statement not covered" >        this.isSmall = false;</span>
+    }
+    BigInteger.prototype = Object.create(Integer.prototype);
+&nbsp;
+    function SmallInteger(value) {
+        this.value = value;
+        this.sign = value &lt; 0;
+        this.isSmall = true;
+    }
+    SmallInteger.prototype = Object.create(Integer.prototype);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function isPrecise(n) {</span>
+<span class="cstat-no" title="statement not covered" >        return -MAX_INT &lt; n &amp;&amp; n &lt; MAX_INT;</span>
+    }
+&nbsp;
+    function smallToArray(n) { // For performance reasons doesn't reference BASE, need to change this function if BASE changes
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (n &lt; 1e7)
+<span class="cstat-no" title="statement not covered" >            return [n];</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (n &lt; 1e14)
+<span class="cstat-no" title="statement not covered" >            return [n % 1e7, Math.floor(n / 1e7)];</span>
+        return [n % 1e7, Math.floor(n / 1e7) % 1e7, Math.floor(n / 1e14)];
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function arrayToSmall(arr) {</span> // If BASE changes this function may need to change
+<span class="cstat-no" title="statement not covered" >        trim(arr);</span>
+<span class="cstat-no" title="statement not covered" >        var length = arr.length;</span>
+<span class="cstat-no" title="statement not covered" >        if (length &lt; 4 &amp;&amp; compareAbs(arr, MAX_INT_ARR) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            switch (length) {</span>
+                case 0: <span class="cstat-no" title="statement not covered" >return 0;</span>
+                case 1: <span class="cstat-no" title="statement not covered" >return arr[0];</span>
+                case 2: <span class="cstat-no" title="statement not covered" >return arr[0] + arr[1] * BASE;</span>
+                default: <span class="cstat-no" title="statement not covered" >return arr[0] + (arr[1] + arr[2] * BASE) * BASE;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return arr;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function trim(v) {</span>
+<span class="cstat-no" title="statement not covered" >        var i = v.length;</span>
+<span class="cstat-no" title="statement not covered" >        while (v[--i] === 0);</span>
+<span class="cstat-no" title="statement not covered" >        v.length = i + 1;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function createArray(length) {</span> // function shamelessly stolen from Yaffle's library https://github.com/Yaffle/BigInteger
+<span class="cstat-no" title="statement not covered" >        var x = new Array(length);</span>
+<span class="cstat-no" title="statement not covered" >        var i = -1;</span>
+<span class="cstat-no" title="statement not covered" >        while (++i &lt; length) {</span>
+<span class="cstat-no" title="statement not covered" >            x[i] = 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return x;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function truncate(n) {</span>
+<span class="cstat-no" title="statement not covered" >        if (n &gt; 0) <span class="cstat-no" title="statement not covered" >return Math.floor(n);</span></span>
+<span class="cstat-no" title="statement not covered" >        return Math.ceil(n);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function add(a, b) {</span> // assumes a and b are arrays with a.length &gt;= b.length
+<span class="cstat-no" title="statement not covered" >        var l_a = a.length,</span>
+            l_b = b.length,
+            r = new Array(l_a),
+            carry = 0,
+            base = BASE,
+            sum, i;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; l_b; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            sum = a[i] + b[i] + carry;</span>
+<span class="cstat-no" title="statement not covered" >            carry = sum &gt;= base ? 1 : 0;</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = sum - carry * base;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        while (i &lt; l_a) {</span>
+<span class="cstat-no" title="statement not covered" >            sum = a[i] + carry;</span>
+<span class="cstat-no" title="statement not covered" >            carry = sum === base ? 1 : 0;</span>
+<span class="cstat-no" title="statement not covered" >            r[i++] = sum - carry * base;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (carry &gt; 0) <span class="cstat-no" title="statement not covered" >r.push(carry);</span></span>
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function addAny(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        if (a.length &gt;= b.length) <span class="cstat-no" title="statement not covered" >return add(a, b);</span></span>
+<span class="cstat-no" title="statement not covered" >        return add(b, a);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function addSmall(a, carry) {</span> // assumes a is array, carry is number with 0 &lt;= carry &lt; MAX_INT
+<span class="cstat-no" title="statement not covered" >        var l = a.length,</span>
+            r = new Array(l),
+            base = BASE,
+            sum, i;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            sum = a[i] - base + carry;</span>
+<span class="cstat-no" title="statement not covered" >            carry = Math.floor(sum / base);</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = sum - carry * base;</span>
+<span class="cstat-no" title="statement not covered" >            carry += 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        while (carry &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            r[i++] = carry % base;</span>
+<span class="cstat-no" title="statement not covered" >            carry = Math.floor(carry / base);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+    BigInteger.prototype.add = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        if (this.sign !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.subtract(n.negate());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var a = this.value, b = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            return new BigInteger(addSmall(a, Math.abs(b)), this.sign);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(addAny(a, b), this.sign);</span>
+    };
+    BigInteger.prototype.plus = BigInteger.prototype.add;
+&nbsp;
+    SmallInteger.prototype.add = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        var a = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (a &lt; 0 !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.subtract(n.negate());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var b = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            if (isPrecise(a + b)) <span class="cstat-no" title="statement not covered" >return new SmallInteger(a + b);</span></span>
+<span class="cstat-no" title="statement not covered" >            b = smallToArray(Math.abs(b));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(addSmall(b, Math.abs(a)), a &lt; 0);</span>
+    };
+    SmallInteger.prototype.plus = SmallInteger.prototype.add;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function subtract(a, b) {</span> // assumes a and b are arrays with a &gt;= b
+<span class="cstat-no" title="statement not covered" >        var a_l = a.length,</span>
+            b_l = b.length,
+            r = new Array(a_l),
+            borrow = 0,
+            base = BASE,
+            i, difference;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; b_l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            difference = a[i] - borrow - b[i];</span>
+<span class="cstat-no" title="statement not covered" >            if (difference &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                difference += base;</span>
+<span class="cstat-no" title="statement not covered" >                borrow = 1;</span>
+            } else <span class="cstat-no" title="statement not covered" >borrow = 0;</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = difference;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        for (i = b_l; i &lt; a_l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            difference = a[i] - borrow;</span>
+<span class="cstat-no" title="statement not covered" >            if (difference &lt; 0) <span class="cstat-no" title="statement not covered" >difference += base;</span></span>
+            else {
+<span class="cstat-no" title="statement not covered" >                r[i++] = difference;</span>
+<span class="cstat-no" title="statement not covered" >                break;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            r[i] = difference;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        for (; i &lt; a_l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = a[i];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        trim(r);</span>
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function subtractAny(a, b, sign) {</span>
+<span class="cstat-no" title="statement not covered" >        var value;</span>
+<span class="cstat-no" title="statement not covered" >        if (compareAbs(a, b) &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >            value = subtract(a,b);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            value = subtract(b, a);</span>
+<span class="cstat-no" title="statement not covered" >            sign = !sign;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        value = arrayToSmall(value);</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof value === "number") {</span>
+<span class="cstat-no" title="statement not covered" >            if (sign) <span class="cstat-no" title="statement not covered" >value = -value;</span></span>
+<span class="cstat-no" title="statement not covered" >            return new SmallInteger(value);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(value, sign);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function subtractSmall(a, b, sign) {</span> // assumes a is array, b is number with 0 &lt;= b &lt; MAX_INT
+<span class="cstat-no" title="statement not covered" >        var l = a.length,</span>
+            r = new Array(l),
+            carry = -b,
+            base = BASE,
+            i, difference;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            difference = a[i] + carry;</span>
+<span class="cstat-no" title="statement not covered" >            carry = Math.floor(difference / base);</span>
+<span class="cstat-no" title="statement not covered" >            difference %= base;</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = difference &lt; 0 ? difference + base : difference;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        r = arrayToSmall(r);</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof r === "number") {</span>
+<span class="cstat-no" title="statement not covered" >            if (sign) <span class="cstat-no" title="statement not covered" >r = -r;</span></span>
+<span class="cstat-no" title="statement not covered" >            return new SmallInteger(r);</span>
+        } <span class="cstat-no" title="statement not covered" >return new BigInteger(r, sign);</span>
+    }
+&nbsp;
+    BigInteger.prototype.subtract = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        if (this.sign !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.add(n.negate());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var a = this.value, b = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall)</span>
+<span class="cstat-no" title="statement not covered" >            return subtractSmall(a, Math.abs(b), this.sign);</span>
+<span class="cstat-no" title="statement not covered" >        return subtractAny(a, b, this.sign);</span>
+    };
+    BigInteger.prototype.minus = BigInteger.prototype.subtract;
+&nbsp;
+    SmallInteger.prototype.subtract = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        var a = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (a &lt; 0 !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.add(n.negate());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var b = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            return new SmallInteger(a - b);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return subtractSmall(b, Math.abs(a), a &gt;= 0);</span>
+    };
+    SmallInteger.prototype.minus = SmallInteger.prototype.subtract;
+&nbsp;
+    BigInteger.prototype.negate = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(this.value, !this.sign);</span>
+    };
+    SmallInteger.prototype.negate = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var sign = this.sign;</span>
+<span class="cstat-no" title="statement not covered" >        var small = new SmallInteger(-this.value);</span>
+<span class="cstat-no" title="statement not covered" >        small.sign = !sign;</span>
+<span class="cstat-no" title="statement not covered" >        return small;</span>
+    };
+&nbsp;
+    BigInteger.prototype.abs = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(this.value, false);</span>
+    };
+    SmallInteger.prototype.abs = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return new SmallInteger(Math.abs(this.value));</span>
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function multiplyLong(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        var a_l = a.length,</span>
+            b_l = b.length,
+            l = a_l + b_l,
+            r = createArray(l),
+            base = BASE,
+            product, carry, i, a_i, b_j;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; a_l; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >            a_i = a[i];</span>
+<span class="cstat-no" title="statement not covered" >            for (var j = 0; j &lt; b_l; ++j) {</span>
+<span class="cstat-no" title="statement not covered" >                b_j = b[j];</span>
+<span class="cstat-no" title="statement not covered" >                product = a_i * b_j + r[i + j];</span>
+<span class="cstat-no" title="statement not covered" >                carry = Math.floor(product / base);</span>
+<span class="cstat-no" title="statement not covered" >                r[i + j] = product - carry * base;</span>
+<span class="cstat-no" title="statement not covered" >                r[i + j + 1] += carry;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        trim(r);</span>
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function multiplySmall(a, b) {</span> // assumes a is array, b is number with |b| &lt; BASE
+<span class="cstat-no" title="statement not covered" >        var l = a.length,</span>
+            r = new Array(l),
+            base = BASE,
+            carry = 0,
+            product, i;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            product = a[i] * b + carry;</span>
+<span class="cstat-no" title="statement not covered" >            carry = Math.floor(product / base);</span>
+<span class="cstat-no" title="statement not covered" >            r[i] = product - carry * base;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        while (carry &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            r[i++] = carry % base;</span>
+<span class="cstat-no" title="statement not covered" >            carry = Math.floor(carry / base);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function shiftLeft(x, n) {</span>
+<span class="cstat-no" title="statement not covered" >        var r = [];</span>
+<span class="cstat-no" title="statement not covered" >        while (n-- &gt; 0) <span class="cstat-no" title="statement not covered" >r.push(0);</span></span>
+<span class="cstat-no" title="statement not covered" >        return r.concat(x);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function multiplyKaratsuba(x, y) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = Math.max(x.length, y.length);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (n &lt;= 30) <span class="cstat-no" title="statement not covered" >return multiplyLong(x, y);</span></span>
+<span class="cstat-no" title="statement not covered" >        n = Math.ceil(n / 2);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var b = x.slice(n),</span>
+            a = x.slice(0, n),
+            d = y.slice(n),
+            c = y.slice(0, n);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var ac = multiplyKaratsuba(a, c),</span>
+            bd = multiplyKaratsuba(b, d),
+            abcd = multiplyKaratsuba(addAny(a, b), addAny(c, d));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var product = addAny(addAny(ac, shiftLeft(subtract(subtract(abcd, ac), bd), n)), shiftLeft(bd, 2 * n));</span>
+<span class="cstat-no" title="statement not covered" >        trim(product);</span>
+<span class="cstat-no" title="statement not covered" >        return product;</span>
+    }
+&nbsp;
+    // The following function is derived from a surface fit of a graph plotting the performance difference
+    // between long multiplication and karatsuba multiplication versus the lengths of the two arrays.
+<span class="fstat-no" title="function not covered" >    function useKaratsuba(l1, l2) {</span>
+<span class="cstat-no" title="statement not covered" >        return -0.012 * l1 - 0.012 * l2 + 0.000015 * l1 * l2 &gt; 0;</span>
+    }
+&nbsp;
+    BigInteger.prototype.multiply = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = this.value, b = n.value,
+            sign = this.sign !== n.sign,
+            abs;
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            if (b === 0) <span class="cstat-no" title="statement not covered" >return Integer[0];</span></span>
+<span class="cstat-no" title="statement not covered" >            if (b === 1) <span class="cstat-no" title="statement not covered" >return this;</span></span>
+<span class="cstat-no" title="statement not covered" >            if (b === -1) <span class="cstat-no" title="statement not covered" >return this.negate();</span></span>
+<span class="cstat-no" title="statement not covered" >            abs = Math.abs(b);</span>
+<span class="cstat-no" title="statement not covered" >            if (abs &lt; BASE) {</span>
+<span class="cstat-no" title="statement not covered" >                return new BigInteger(multiplySmall(a, abs), sign);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            b = smallToArray(abs);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (useKaratsuba(a.length, b.length)) // Karatsuba is only faster for certain array sizes</span>
+<span class="cstat-no" title="statement not covered" >            return new BigInteger(multiplyKaratsuba(a, b), sign);</span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(multiplyLong(a, b), sign);</span>
+    };
+&nbsp;
+    BigInteger.prototype.times = BigInteger.prototype.multiply;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function multiplySmallAndArray(a, b, sign) {</span> // a &gt;= 0
+<span class="cstat-no" title="statement not covered" >        if (a &lt; BASE) {</span>
+<span class="cstat-no" title="statement not covered" >            return new BigInteger(multiplySmall(b, a), sign);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(multiplyLong(b, smallToArray(a)), sign);</span>
+    }
+    SmallInteger.prototype._multiplyBySmall = <span class="fstat-no" title="function not covered" >function (a) {</span>
+<span class="cstat-no" title="statement not covered" >            if (isPrecise(a.value * this.value)) {</span>
+<span class="cstat-no" title="statement not covered" >                return new SmallInteger(a.value * this.value);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return multiplySmallAndArray(Math.abs(a.value), smallToArray(Math.abs(this.value)), this.sign !== a.sign);</span>
+    };
+    BigInteger.prototype._multiplyBySmall = <span class="fstat-no" title="function not covered" >function (a) {</span>
+<span class="cstat-no" title="statement not covered" >            if (a.value === 0) <span class="cstat-no" title="statement not covered" >return Integer[0];</span></span>
+<span class="cstat-no" title="statement not covered" >            if (a.value === 1) <span class="cstat-no" title="statement not covered" >return this;</span></span>
+<span class="cstat-no" title="statement not covered" >            if (a.value === -1) <span class="cstat-no" title="statement not covered" >return this.negate();</span></span>
+<span class="cstat-no" title="statement not covered" >            return multiplySmallAndArray(Math.abs(a.value), this.value, this.sign !== a.sign);</span>
+    };
+    SmallInteger.prototype.multiply = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return parseValue(v)._multiplyBySmall(this);</span>
+    };
+    SmallInteger.prototype.times = SmallInteger.prototype.multiply;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function square(a) {</span>
+<span class="cstat-no" title="statement not covered" >        var l = a.length,</span>
+            r = createArray(l + l),
+            base = BASE,
+            product, carry, i, a_i, a_j;
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            a_i = a[i];</span>
+<span class="cstat-no" title="statement not covered" >            for (var j = 0; j &lt; l; j++) {</span>
+<span class="cstat-no" title="statement not covered" >                a_j = a[j];</span>
+<span class="cstat-no" title="statement not covered" >                product = a_i * a_j + r[i + j];</span>
+<span class="cstat-no" title="statement not covered" >                carry = Math.floor(product / base);</span>
+<span class="cstat-no" title="statement not covered" >                r[i + j] = product - carry * base;</span>
+<span class="cstat-no" title="statement not covered" >                r[i + j + 1] += carry;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        trim(r);</span>
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    }
+&nbsp;
+    BigInteger.prototype.square = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(square(this.value), false);</span>
+    };
+&nbsp;
+    SmallInteger.prototype.square = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var value = this.value * this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (isPrecise(value)) <span class="cstat-no" title="statement not covered" >return new SmallInteger(value);</span></span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(square(smallToArray(Math.abs(this.value))), false);</span>
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function divMod1(a, b) {</span> // Left over from previous version. Performs faster than divMod2 on smaller input sizes.
+<span class="cstat-no" title="statement not covered" >        var a_l = a.length,</span>
+            b_l = b.length,
+            base = BASE,
+            result = createArray(b.length),
+            divisorMostSignificantDigit = b[b_l - 1],
+            // normalization
+            lambda = Math.ceil(base / (2 * divisorMostSignificantDigit)),
+            remainder = multiplySmall(a, lambda),
+            divisor = multiplySmall(b, lambda),
+            quotientDigit, shift, carry, borrow, i, l, q;
+<span class="cstat-no" title="statement not covered" >        if (remainder.length &lt;= a_l) <span class="cstat-no" title="statement not covered" >remainder.push(0);</span></span>
+<span class="cstat-no" title="statement not covered" >        divisor.push(0);</span>
+<span class="cstat-no" title="statement not covered" >        divisorMostSignificantDigit = divisor[b_l - 1];</span>
+<span class="cstat-no" title="statement not covered" >        for (shift = a_l - b_l; shift &gt;= 0; shift--) {</span>
+<span class="cstat-no" title="statement not covered" >            quotientDigit = base - 1;</span>
+<span class="cstat-no" title="statement not covered" >            if (remainder[shift + b_l] !== divisorMostSignificantDigit) {</span>
+<span class="cstat-no" title="statement not covered" >              quotientDigit = Math.floor((remainder[shift + b_l] * base + remainder[shift + b_l - 1]) / divisorMostSignificantDigit);</span>
+            }
+            // quotientDigit &lt;= base - 1
+<span class="cstat-no" title="statement not covered" >            carry = 0;</span>
+<span class="cstat-no" title="statement not covered" >            borrow = 0;</span>
+<span class="cstat-no" title="statement not covered" >            l = divisor.length;</span>
+<span class="cstat-no" title="statement not covered" >            for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                carry += quotientDigit * divisor[i];</span>
+<span class="cstat-no" title="statement not covered" >                q = Math.floor(carry / base);</span>
+<span class="cstat-no" title="statement not covered" >                borrow += remainder[shift + i] - (carry - q * base);</span>
+<span class="cstat-no" title="statement not covered" >                carry = q;</span>
+<span class="cstat-no" title="statement not covered" >                if (borrow &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    remainder[shift + i] = borrow + base;</span>
+<span class="cstat-no" title="statement not covered" >                    borrow = -1;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    remainder[shift + i] = borrow;</span>
+<span class="cstat-no" title="statement not covered" >                    borrow = 0;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            while (borrow !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                quotientDigit -= 1;</span>
+<span class="cstat-no" title="statement not covered" >                carry = 0;</span>
+<span class="cstat-no" title="statement not covered" >                for (i = 0; i &lt; l; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    carry += remainder[shift + i] - base + divisor[i];</span>
+<span class="cstat-no" title="statement not covered" >                    if (carry &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        remainder[shift + i] = carry + base;</span>
+<span class="cstat-no" title="statement not covered" >                        carry = 0;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        remainder[shift + i] = carry;</span>
+<span class="cstat-no" title="statement not covered" >                        carry = 1;</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                borrow += carry;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            result[shift] = quotientDigit;</span>
+        }
+        // denormalization
+<span class="cstat-no" title="statement not covered" >        remainder = divModSmall(remainder, lambda)[0];</span>
+<span class="cstat-no" title="statement not covered" >        return [arrayToSmall(result), arrayToSmall(remainder)];</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function divMod2(a, b) {</span> // Implementation idea shamelessly stolen from Silent Matt's library http://silentmatt.com/biginteger/
+        // Performs faster than divMod1 on larger input sizes.
+<span class="cstat-no" title="statement not covered" >        var a_l = a.length,</span>
+            b_l = b.length,
+            result = [],
+            part = [],
+            base = BASE,
+            guess, xlen, highx, highy, check;
+<span class="cstat-no" title="statement not covered" >        while (a_l) {</span>
+<span class="cstat-no" title="statement not covered" >            part.unshift(a[--a_l]);</span>
+<span class="cstat-no" title="statement not covered" >            trim(part);</span>
+<span class="cstat-no" title="statement not covered" >            if (compareAbs(part, b) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                result.push(0);</span>
+<span class="cstat-no" title="statement not covered" >                continue;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            xlen = part.length;</span>
+<span class="cstat-no" title="statement not covered" >            highx = part[xlen - 1] * base + part[xlen - 2];</span>
+<span class="cstat-no" title="statement not covered" >            highy = b[b_l - 1] * base + b[b_l - 2];</span>
+<span class="cstat-no" title="statement not covered" >            if (xlen &gt; b_l) {</span>
+<span class="cstat-no" title="statement not covered" >                highx = (highx + 1) * base;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            guess = Math.ceil(highx / highy);</span>
+<span class="cstat-no" title="statement not covered" >            do {</span>
+<span class="cstat-no" title="statement not covered" >                check = multiplySmall(b, guess);</span>
+<span class="cstat-no" title="statement not covered" >                if (compareAbs(check, part) &lt;= 0) <span class="cstat-no" title="statement not covered" >break;</span></span>
+<span class="cstat-no" title="statement not covered" >                guess--;</span>
+            } while (guess);
+<span class="cstat-no" title="statement not covered" >            result.push(guess);</span>
+<span class="cstat-no" title="statement not covered" >            part = subtract(part, check);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        result.reverse();</span>
+<span class="cstat-no" title="statement not covered" >        return [arrayToSmall(result), arrayToSmall(part)];</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function divModSmall(value, lambda) {</span>
+<span class="cstat-no" title="statement not covered" >        var length = value.length,</span>
+            quotient = createArray(length),
+            base = BASE,
+            i, q, remainder, divisor;
+<span class="cstat-no" title="statement not covered" >        remainder = 0;</span>
+<span class="cstat-no" title="statement not covered" >        for (i = length - 1; i &gt;= 0; --i) {</span>
+<span class="cstat-no" title="statement not covered" >            divisor = remainder * base + value[i];</span>
+<span class="cstat-no" title="statement not covered" >            q = truncate(divisor / lambda);</span>
+<span class="cstat-no" title="statement not covered" >            remainder = divisor - q * lambda;</span>
+<span class="cstat-no" title="statement not covered" >            quotient[i] = q | 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return [quotient, remainder | 0];</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function divModAny(self, v) {</span>
+<span class="cstat-no" title="statement not covered" >        var value, n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        var a = self.value, b = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        var quotient;</span>
+<span class="cstat-no" title="statement not covered" >        if (b === 0) <span class="cstat-no" title="statement not covered" >throw new Error("Cannot divide by zero");</span></span>
+<span class="cstat-no" title="statement not covered" >        if (self.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >                return [new SmallInteger(truncate(a / b)), new SmallInteger(a % b)];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return [Integer[0], self];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            if (b === 1) <span class="cstat-no" title="statement not covered" >return [self, Integer[0]];</span></span>
+<span class="cstat-no" title="statement not covered" >            if (b == -1) <span class="cstat-no" title="statement not covered" >return [self.negate(), Integer[0]];</span></span>
+<span class="cstat-no" title="statement not covered" >            var abs = Math.abs(b);</span>
+<span class="cstat-no" title="statement not covered" >            if (abs &lt; BASE) {</span>
+<span class="cstat-no" title="statement not covered" >                value = divModSmall(a, abs);</span>
+<span class="cstat-no" title="statement not covered" >                quotient = arrayToSmall(value[0]);</span>
+<span class="cstat-no" title="statement not covered" >                var remainder = value[1];</span>
+<span class="cstat-no" title="statement not covered" >                if (self.sign) <span class="cstat-no" title="statement not covered" >remainder = -remainder;</span></span>
+<span class="cstat-no" title="statement not covered" >                if (typeof quotient === "number") {</span>
+<span class="cstat-no" title="statement not covered" >                    if (self.sign !== n.sign) <span class="cstat-no" title="statement not covered" >quotient = -quotient;</span></span>
+<span class="cstat-no" title="statement not covered" >                    return [new SmallInteger(quotient), new SmallInteger(remainder)];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return [new BigInteger(quotient, self.sign !== n.sign), new SmallInteger(remainder)];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            b = smallToArray(abs);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var comparison = compareAbs(a, b);</span>
+<span class="cstat-no" title="statement not covered" >        if (comparison === -1) <span class="cstat-no" title="statement not covered" >return [Integer[0], self];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (comparison === 0) <span class="cstat-no" title="statement not covered" >return [Integer[self.sign === n.sign ? 1 : -1], Integer[0]];</span></span>
+&nbsp;
+        // divMod1 is faster on smaller input sizes
+<span class="cstat-no" title="statement not covered" >        if (a.length + b.length &lt;= 200)</span>
+<span class="cstat-no" title="statement not covered" >            value = divMod1(a, b);</span>
+        else <span class="cstat-no" title="statement not covered" >value = divMod2(a, b);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        quotient = value[0];</span>
+<span class="cstat-no" title="statement not covered" >        var qSign = self.sign !== n.sign,</span>
+            mod = value[1],
+            mSign = self.sign;
+<span class="cstat-no" title="statement not covered" >        if (typeof quotient === "number") {</span>
+<span class="cstat-no" title="statement not covered" >            if (qSign) <span class="cstat-no" title="statement not covered" >quotient = -quotient;</span></span>
+<span class="cstat-no" title="statement not covered" >            quotient = new SmallInteger(quotient);</span>
+        } else <span class="cstat-no" title="statement not covered" >quotient = new BigInteger(quotient, qSign);</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof mod === "number") {</span>
+<span class="cstat-no" title="statement not covered" >            if (mSign) <span class="cstat-no" title="statement not covered" >mod = -mod;</span></span>
+<span class="cstat-no" title="statement not covered" >            mod = new SmallInteger(mod);</span>
+        } else <span class="cstat-no" title="statement not covered" >mod = new BigInteger(mod, mSign);</span>
+<span class="cstat-no" title="statement not covered" >        return [quotient, mod];</span>
+    }
+&nbsp;
+    BigInteger.prototype.divmod = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var result = divModAny(this, v);</span>
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            quotient: result[0],
+            remainder: result[1]
+        };
+    };
+    SmallInteger.prototype.divmod = BigInteger.prototype.divmod;
+&nbsp;
+    BigInteger.prototype.divide = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return divModAny(this, v)[0];</span>
+    };
+    SmallInteger.prototype.over = SmallInteger.prototype.divide = BigInteger.prototype.over = BigInteger.prototype.divide;
+&nbsp;
+    BigInteger.prototype.mod = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return divModAny(this, v)[1];</span>
+    };
+    SmallInteger.prototype.remainder = SmallInteger.prototype.mod = BigInteger.prototype.remainder = BigInteger.prototype.mod;
+&nbsp;
+    BigInteger.prototype.pow = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = this.value,
+            b = n.value,
+            value, x, y;
+<span class="cstat-no" title="statement not covered" >        if (b === 0) <span class="cstat-no" title="statement not covered" >return Integer[1];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a === 0) <span class="cstat-no" title="statement not covered" >return Integer[0];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a === 1) <span class="cstat-no" title="statement not covered" >return Integer[1];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a === -1) <span class="cstat-no" title="statement not covered" >return n.isEven() ? Integer[1] : Integer[-1];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return Integer[0];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (!n.isSmall) <span class="cstat-no" title="statement not covered" >throw new Error("The exponent " + n.toString() + " is too large.");</span></span>
+<span class="cstat-no" title="statement not covered" >        if (this.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            if (isPrecise(value = Math.pow(a, b)))</span>
+<span class="cstat-no" title="statement not covered" >                return new SmallInteger(truncate(value));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        x = this;</span>
+<span class="cstat-no" title="statement not covered" >        y = Integer[1];</span>
+<span class="cstat-no" title="statement not covered" >        while (true) {</span>
+<span class="cstat-no" title="statement not covered" >            if (b &amp; 1 === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                y = y.times(x);</span>
+<span class="cstat-no" title="statement not covered" >                --b;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (b === 0) <span class="cstat-no" title="statement not covered" >break;</span></span>
+<span class="cstat-no" title="statement not covered" >            b /= 2;</span>
+<span class="cstat-no" title="statement not covered" >            x = x.square();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return y;</span>
+    };
+    SmallInteger.prototype.pow = BigInteger.prototype.pow;
+&nbsp;
+    BigInteger.prototype.modPow = <span class="fstat-no" title="function not covered" >function (exp, mod) {</span>
+<span class="cstat-no" title="statement not covered" >        exp = parseValue(exp);</span>
+<span class="cstat-no" title="statement not covered" >        mod = parseValue(mod);</span>
+<span class="cstat-no" title="statement not covered" >        if (mod.isZero()) <span class="cstat-no" title="statement not covered" >throw new Error("Cannot take modPow with modulus 0");</span></span>
+<span class="cstat-no" title="statement not covered" >        var r = Integer[1],</span>
+            base = this.mod(mod);
+<span class="cstat-no" title="statement not covered" >        while (exp.isPositive()) {</span>
+<span class="cstat-no" title="statement not covered" >            if (base.isZero()) <span class="cstat-no" title="statement not covered" >return Integer[0];</span></span>
+<span class="cstat-no" title="statement not covered" >            if (exp.isOdd()) <span class="cstat-no" title="statement not covered" >r = r.multiply(base).mod(mod);</span></span>
+<span class="cstat-no" title="statement not covered" >            exp = exp.divide(2);</span>
+<span class="cstat-no" title="statement not covered" >            base = base.square().mod(mod);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return r;</span>
+    };
+    SmallInteger.prototype.modPow = BigInteger.prototype.modPow;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function compareAbs(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        if (a.length !== b.length) {</span>
+<span class="cstat-no" title="statement not covered" >            return a.length &gt; b.length ? 1 : -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        for (var i = a.length - 1; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >            if (a[i] !== b[i]) <span class="cstat-no" title="statement not covered" >return a[i] &gt; b[i] ? 1 : -1;</span></span>
+        }
+<span class="cstat-no" title="statement not covered" >        return 0;</span>
+    }
+&nbsp;
+    BigInteger.prototype.compareAbs = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = this.value,
+            b = n.value;
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
+<span class="cstat-no" title="statement not covered" >        return compareAbs(a, b);</span>
+    };
+    SmallInteger.prototype.compareAbs = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = Math.abs(this.value),
+            b = n.value;
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            b = Math.abs(b);</span>
+<span class="cstat-no" title="statement not covered" >            return a === b ? 0 : a &gt; b ? 1 : -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return -1;</span>
+    };
+&nbsp;
+    BigInteger.prototype.compare = <span class="fstat-no" title="function not covered" >function (v) {</span>
+        // See discussion about comparison with Infinity:
+        // https://github.com/peterolson/BigInteger.js/issues/61
+<span class="cstat-no" title="statement not covered" >        if (v === Infinity) {</span>
+<span class="cstat-no" title="statement not covered" >            return -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (v === -Infinity) {</span>
+<span class="cstat-no" title="statement not covered" >            return 1;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = this.value,
+            b = n.value;
+<span class="cstat-no" title="statement not covered" >        if (this.sign !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return n.sign ? 1 : -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.sign ? -1 : 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return compareAbs(a, b) * (this.sign ? -1 : 1);</span>
+    };
+    BigInteger.prototype.compareTo = BigInteger.prototype.compare;
+&nbsp;
+    SmallInteger.prototype.compare = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        if (v === Infinity) {</span>
+<span class="cstat-no" title="statement not covered" >            return -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (v === -Infinity) {</span>
+<span class="cstat-no" title="statement not covered" >            return 1;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v),</span>
+            a = this.value,
+            b = n.value;
+<span class="cstat-no" title="statement not covered" >        if (n.isSmall) {</span>
+<span class="cstat-no" title="statement not covered" >            return a == b ? 0 : a &gt; b ? 1 : -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (a &lt; 0 !== n.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return a &lt; 0 ? -1 : 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return a &lt; 0 ? 1 : -1;</span>
+    };
+    SmallInteger.prototype.compareTo = SmallInteger.prototype.compare;
+&nbsp;
+    BigInteger.prototype.equals = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) === 0;</span>
+    };
+    SmallInteger.prototype.eq = SmallInteger.prototype.equals = BigInteger.prototype.eq = BigInteger.prototype.equals;
+&nbsp;
+    BigInteger.prototype.notEquals = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) !== 0;</span>
+    };
+    SmallInteger.prototype.neq = SmallInteger.prototype.notEquals = BigInteger.prototype.neq = BigInteger.prototype.notEquals;
+&nbsp;
+    BigInteger.prototype.greater = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) &gt; 0;</span>
+    };
+    SmallInteger.prototype.gt = SmallInteger.prototype.greater = BigInteger.prototype.gt = BigInteger.prototype.greater;
+&nbsp;
+    BigInteger.prototype.lesser = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) &lt; 0;</span>
+    };
+    SmallInteger.prototype.lt = SmallInteger.prototype.lesser = BigInteger.prototype.lt = BigInteger.prototype.lesser;
+&nbsp;
+    BigInteger.prototype.greaterOrEquals = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) &gt;= 0;</span>
+    };
+    SmallInteger.prototype.geq = SmallInteger.prototype.greaterOrEquals = BigInteger.prototype.geq = BigInteger.prototype.greaterOrEquals;
+&nbsp;
+    BigInteger.prototype.lesserOrEquals = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.compare(v) &lt;= 0;</span>
+    };
+    SmallInteger.prototype.leq = SmallInteger.prototype.lesserOrEquals = BigInteger.prototype.leq = BigInteger.prototype.lesserOrEquals;
+&nbsp;
+    BigInteger.prototype.isEven = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return (this.value[0] &amp; 1) === 0;</span>
+    };
+    SmallInteger.prototype.isEven = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return (this.value &amp; 1) === 0;</span>
+    };
+&nbsp;
+    BigInteger.prototype.isOdd = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return (this.value[0] &amp; 1) === 1;</span>
+    };
+    SmallInteger.prototype.isOdd = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return (this.value &amp; 1) === 1;</span>
+    };
+&nbsp;
+    BigInteger.prototype.isPositive = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return !this.sign;</span>
+    };
+    SmallInteger.prototype.isPositive = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.value &gt; 0;</span>
+    };
+&nbsp;
+    BigInteger.prototype.isNegative = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.sign;</span>
+    };
+    SmallInteger.prototype.isNegative = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.value &lt; 0;</span>
+    };
+&nbsp;
+    BigInteger.prototype.isUnit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+    };
+    SmallInteger.prototype.isUnit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return Math.abs(this.value) === 1;</span>
+    };
+&nbsp;
+    BigInteger.prototype.isZero = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+    };
+    SmallInteger.prototype.isZero = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.value === 0;</span>
+    };
+    BigInteger.prototype.isDivisibleBy = <span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = parseValue(v);</span>
+<span class="cstat-no" title="statement not covered" >        var value = n.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (value === 0) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (value === 1) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (value === 2) <span class="cstat-no" title="statement not covered" >return this.isEven();</span></span>
+<span class="cstat-no" title="statement not covered" >        return this.mod(n).equals(Integer[0]);</span>
+    };
+    SmallInteger.prototype.isDivisibleBy = BigInteger.prototype.isDivisibleBy;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function isBasicPrime(v) {</span>
+<span class="cstat-no" title="statement not covered" >        var n = v.abs();</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isUnit()) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (n.equals(2) || n.equals(3) || n.equals(5)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (n.isEven() || n.isDivisibleBy(3) || n.isDivisibleBy(5)) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (n.lesser(25)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+        // we don't know if it's prime: let the other functions figure it out
+    }
+&nbsp;
+    BigInteger.prototype.isPrime = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var isPrime = isBasicPrime(this);</span>
+<span class="cstat-no" title="statement not covered" >        if (isPrime !== undefined) <span class="cstat-no" title="statement not covered" >return isPrime;</span></span>
+<span class="cstat-no" title="statement not covered" >        var n = this.abs(),</span>
+            nPrev = n.prev();
+<span class="cstat-no" title="statement not covered" >        var a = [2, 3, 5, 7, 11, 13, 17, 19],</span>
+            b = nPrev,
+            d, t, i, x;
+<span class="cstat-no" title="statement not covered" >        while (b.isEven()) <span class="cstat-no" title="statement not covered" >b = b.divide(2);</span></span>
+<span class="cstat-no" title="statement not covered" >        for (i = 0; i &lt; a.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            x = bigInt(a[i]).modPow(b, n);</span>
+<span class="cstat-no" title="statement not covered" >            if (x.equals(Integer[1]) || x.equals(nPrev)) <span class="cstat-no" title="statement not covered" >continue;</span></span>
+<span class="cstat-no" title="statement not covered" >            for (t = true, d = b; t &amp;&amp; d.lesser(nPrev) ; d = d.multiply(2)) {</span>
+<span class="cstat-no" title="statement not covered" >                x = x.square().mod(n);</span>
+<span class="cstat-no" title="statement not covered" >                if (x.equals(nPrev)) <span class="cstat-no" title="statement not covered" >t = false;</span></span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (t) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    };
+    SmallInteger.prototype.isPrime = BigInteger.prototype.isPrime;
+&nbsp;
+    BigInteger.prototype.isProbablePrime = <span class="fstat-no" title="function not covered" >function (iterations) {</span>
+<span class="cstat-no" title="statement not covered" >        var isPrime = isBasicPrime(this);</span>
+<span class="cstat-no" title="statement not covered" >        if (isPrime !== undefined) <span class="cstat-no" title="statement not covered" >return isPrime;</span></span>
+<span class="cstat-no" title="statement not covered" >        var n = this.abs();</span>
+<span class="cstat-no" title="statement not covered" >        var t = iterations === undefined ? 5 : iterations;</span>
+        // use the Fermat primality test
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; t; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            var a = bigInt.randBetween(2, n.minus(2));</span>
+<span class="cstat-no" title="statement not covered" >            if (!a.modPow(n.prev(), n).isUnit()) <span class="cstat-no" title="statement not covered" >return false; </span></span>// definitely composite
+        }
+<span class="cstat-no" title="statement not covered" >        return true; </span>// large chance of being prime
+    };
+    SmallInteger.prototype.isProbablePrime = BigInteger.prototype.isProbablePrime;
+&nbsp;
+    BigInteger.prototype.modInv = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        var t = bigInt.zero, newT = bigInt.one, r = parseValue(n), newR = this.abs(), q, lastT, lastR;</span>
+<span class="cstat-no" title="statement not covered" >        while (!newR.equals(bigInt.zero)) {</span>
+<span class="cstat-no" title="statement not covered" >            q = r.divide(newR);</span>
+<span class="cstat-no" title="statement not covered" >            lastT = t;</span>
+<span class="cstat-no" title="statement not covered" >            lastR = r;</span>
+<span class="cstat-no" title="statement not covered" >            t = newT;</span>
+<span class="cstat-no" title="statement not covered" >            r = newR;</span>
+<span class="cstat-no" title="statement not covered" >            newT = lastT.subtract(q.multiply(newT));</span>
+<span class="cstat-no" title="statement not covered" >            newR = lastR.subtract(q.multiply(newR));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (!r.equals(1)) <span class="cstat-no" title="statement not covered" >throw new Error(this.toString() + " and " + n.toString() + " are not co-prime");</span></span>
+<span class="cstat-no" title="statement not covered" >        if (t.compare(0) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >            t = t.add(n);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (this.isNegative()) {</span>
+<span class="cstat-no" title="statement not covered" >            return t.negate();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return t;</span>
+    };
+&nbsp;
+    SmallInteger.prototype.modInv = BigInteger.prototype.modInv;
+&nbsp;
+    BigInteger.prototype.next = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var value = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return subtractSmall(value, 1, this.sign);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(addSmall(value, 1), this.sign);</span>
+    };
+    SmallInteger.prototype.next = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var value = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (value + 1 &lt; MAX_INT) <span class="cstat-no" title="statement not covered" >return new SmallInteger(value + 1);</span></span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(MAX_INT_ARR, false);</span>
+    };
+&nbsp;
+    BigInteger.prototype.prev = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var value = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.sign) {</span>
+<span class="cstat-no" title="statement not covered" >            return new BigInteger(addSmall(value, 1), true);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return subtractSmall(value, 1, this.sign);</span>
+    };
+    SmallInteger.prototype.prev = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var value = this.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (value - 1 &gt; -MAX_INT) <span class="cstat-no" title="statement not covered" >return new SmallInteger(value - 1);</span></span>
+<span class="cstat-no" title="statement not covered" >        return new BigInteger(MAX_INT_ARR, true);</span>
+    };
+&nbsp;
+    var powersOfTwo = [1];
+    while (powersOfTwo[powersOfTwo.length - 1] &lt;= BASE) powersOfTwo.push(2 * powersOfTwo[powersOfTwo.length - 1]);
+    var powers2Length = powersOfTwo.length, highestPower2 = powersOfTwo[powers2Length - 1];
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function shift_isSmall(n) {</span>
+<span class="cstat-no" title="statement not covered" >        return ((typeof n === "number" || typeof n === "string") &amp;&amp; +Math.abs(n) &lt;= BASE) ||</span>
+            (n instanceof BigInteger &amp;&amp; n.value.length &lt;= 1);
+    }
+&nbsp;
+    BigInteger.prototype.shiftLeft = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!shift_isSmall(n)) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error(String(n) + " is too large for shifting.");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        n = +n;</span>
+<span class="cstat-no" title="statement not covered" >        if (n &lt; 0) <span class="cstat-no" title="statement not covered" >return this.shiftRight(-n);</span></span>
+<span class="cstat-no" title="statement not covered" >        var result = this;</span>
+<span class="cstat-no" title="statement not covered" >        while (n &gt;= powers2Length) {</span>
+<span class="cstat-no" title="statement not covered" >            result = result.multiply(highestPower2);</span>
+<span class="cstat-no" title="statement not covered" >            n -= powers2Length - 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return result.multiply(powersOfTwo[n]);</span>
+    };
+    SmallInteger.prototype.shiftLeft = BigInteger.prototype.shiftLeft;
+&nbsp;
+    BigInteger.prototype.shiftRight = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        var remQuo;</span>
+<span class="cstat-no" title="statement not covered" >        if (!shift_isSmall(n)) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error(String(n) + " is too large for shifting.");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        n = +n;</span>
+<span class="cstat-no" title="statement not covered" >        if (n &lt; 0) <span class="cstat-no" title="statement not covered" >return this.shiftLeft(-n);</span></span>
+<span class="cstat-no" title="statement not covered" >        var result = this;</span>
+<span class="cstat-no" title="statement not covered" >        while (n &gt;= powers2Length) {</span>
+<span class="cstat-no" title="statement not covered" >            if (result.isZero()) <span class="cstat-no" title="statement not covered" >return result;</span></span>
+<span class="cstat-no" title="statement not covered" >            remQuo = divModAny(result, highestPower2);</span>
+<span class="cstat-no" title="statement not covered" >            result = remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];</span>
+<span class="cstat-no" title="statement not covered" >            n -= powers2Length - 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        remQuo = divModAny(result, powersOfTwo[n]);</span>
+<span class="cstat-no" title="statement not covered" >        return remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];</span>
+    };
+    SmallInteger.prototype.shiftRight = BigInteger.prototype.shiftRight;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function bitwise(x, y, fn) {</span>
+<span class="cstat-no" title="statement not covered" >        y = parseValue(y);</span>
+<span class="cstat-no" title="statement not covered" >        var xSign = x.isNegative(), ySign = y.isNegative();</span>
+<span class="cstat-no" title="statement not covered" >        var xRem = xSign ? x.not() : x,</span>
+            yRem = ySign ? y.not() : y;
+<span class="cstat-no" title="statement not covered" >        var xBits = [], yBits = [];</span>
+<span class="cstat-no" title="statement not covered" >        var xStop = false, yStop = false;</span>
+<span class="cstat-no" title="statement not covered" >        while (!xStop || !yStop) {</span>
+<span class="cstat-no" title="statement not covered" >            if (xRem.isZero()) { // virtual sign extension for simulating two's complement</span>
+<span class="cstat-no" title="statement not covered" >                xStop = true;</span>
+<span class="cstat-no" title="statement not covered" >                xBits.push(xSign ? 1 : 0);</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (xSign) <span class="cstat-no" title="statement not covered" >xBits.push(xRem.isEven() ? 1 : 0); </span>// two's complement for negative numbers</span>
+            else <span class="cstat-no" title="statement not covered" >xBits.push(xRem.isEven() ? 0 : 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (yRem.isZero()) {</span>
+<span class="cstat-no" title="statement not covered" >                yStop = true;</span>
+<span class="cstat-no" title="statement not covered" >                yBits.push(ySign ? 1 : 0);</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >if (ySign) <span class="cstat-no" title="statement not covered" >yBits.push(yRem.isEven() ? 1 : 0);</span></span>
+            else <span class="cstat-no" title="statement not covered" >yBits.push(yRem.isEven() ? 0 : 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            xRem = xRem.over(2);</span>
+<span class="cstat-no" title="statement not covered" >            yRem = yRem.over(2);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var result = [];</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; xBits.length; i++) <span class="cstat-no" title="statement not covered" >result.push(fn(xBits[i], yBits[i]));</span></span>
+<span class="cstat-no" title="statement not covered" >        var sum = bigInt(result.pop()).negate().times(bigInt(2).pow(result.length));</span>
+<span class="cstat-no" title="statement not covered" >        while (result.length) {</span>
+<span class="cstat-no" title="statement not covered" >            sum = sum.add(bigInt(result.pop()).times(bigInt(2).pow(result.length)));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return sum;</span>
+    }
+&nbsp;
+    BigInteger.prototype.not = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.negate().prev();</span>
+    };
+    SmallInteger.prototype.not = BigInteger.prototype.not;
+&nbsp;
+    BigInteger.prototype.and = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        return bitwise(this, n, <span class="fstat-no" title="function not covered" >function (a, b) {</span> <span class="cstat-no" title="statement not covered" >return a &amp; b; </span>});</span>
+    };
+    SmallInteger.prototype.and = BigInteger.prototype.and;
+&nbsp;
+    BigInteger.prototype.or = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        return bitwise(this, n, <span class="fstat-no" title="function not covered" >function (a, b) {</span> <span class="cstat-no" title="statement not covered" >return a | b; </span>});</span>
+    };
+    SmallInteger.prototype.or = BigInteger.prototype.or;
+&nbsp;
+    BigInteger.prototype.xor = <span class="fstat-no" title="function not covered" >function (n) {</span>
+<span class="cstat-no" title="statement not covered" >        return bitwise(this, n, <span class="fstat-no" title="function not covered" >function (a, b) {</span> <span class="cstat-no" title="statement not covered" >return a ^ b; </span>});</span>
+    };
+    SmallInteger.prototype.xor = BigInteger.prototype.xor;
+&nbsp;
+    var LOBMASK_I = 1 &lt;&lt; 30, LOBMASK_BI = (BASE &amp; -BASE) * (BASE &amp; -BASE) | LOBMASK_I;
+<span class="fstat-no" title="function not covered" >    function roughLOB(n) {</span> // get lowestOneBit (rough)
+        // SmallInteger: return Min(lowestOneBit(n), 1 &lt;&lt; 30)
+        // BigInteger: return Min(lowestOneBit(n), 1 &lt;&lt; 14) [BASE=1e7]
+<span class="cstat-no" title="statement not covered" >        var v = n.value, x = typeof v === "number" ? v | LOBMASK_I : v[0] + v[1] * BASE | LOBMASK_BI;</span>
+<span class="cstat-no" title="statement not covered" >        return x &amp; -x;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function max(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        a = parseValue(a);</span>
+<span class="cstat-no" title="statement not covered" >        b = parseValue(b);</span>
+<span class="cstat-no" title="statement not covered" >        return a.greater(b) ? a : b;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function min(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        a = parseValue(a);</span>
+<span class="cstat-no" title="statement not covered" >        b = parseValue(b);</span>
+<span class="cstat-no" title="statement not covered" >        return a.lesser(b) ? a : b;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function gcd(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        a = parseValue(a).abs();</span>
+<span class="cstat-no" title="statement not covered" >        b = parseValue(b).abs();</span>
+<span class="cstat-no" title="statement not covered" >        if (a.equals(b)) <span class="cstat-no" title="statement not covered" >return a;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a.isZero()) <span class="cstat-no" title="statement not covered" >return b;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (b.isZero()) <span class="cstat-no" title="statement not covered" >return a;</span></span>
+<span class="cstat-no" title="statement not covered" >        var c = Integer[1], d, t;</span>
+<span class="cstat-no" title="statement not covered" >        while (a.isEven() &amp;&amp; b.isEven()) {</span>
+<span class="cstat-no" title="statement not covered" >            d = Math.min(roughLOB(a), roughLOB(b));</span>
+<span class="cstat-no" title="statement not covered" >            a = a.divide(d);</span>
+<span class="cstat-no" title="statement not covered" >            b = b.divide(d);</span>
+<span class="cstat-no" title="statement not covered" >            c = c.multiply(d);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        while (a.isEven()) {</span>
+<span class="cstat-no" title="statement not covered" >            a = a.divide(roughLOB(a));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        do {</span>
+<span class="cstat-no" title="statement not covered" >            while (b.isEven()) {</span>
+<span class="cstat-no" title="statement not covered" >                b = b.divide(roughLOB(b));</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (a.greater(b)) {</span>
+<span class="cstat-no" title="statement not covered" >                t = b; <span class="cstat-no" title="statement not covered" ></span>b = a; <span class="cstat-no" title="statement not covered" ></span>a = t;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            b = b.subtract(a);</span>
+        } while (!b.isZero());
+<span class="cstat-no" title="statement not covered" >        return c.isUnit() ? a : a.multiply(c);</span>
+    }
+<span class="fstat-no" title="function not covered" >    function lcm(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        a = parseValue(a).abs();</span>
+<span class="cstat-no" title="statement not covered" >        b = parseValue(b).abs();</span>
+<span class="cstat-no" title="statement not covered" >        return a.divide(gcd(a, b)).multiply(b);</span>
+    }
+<span class="fstat-no" title="function not covered" >    function randBetween(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        a = parseValue(a);</span>
+<span class="cstat-no" title="statement not covered" >        b = parseValue(b);</span>
+<span class="cstat-no" title="statement not covered" >        var low = min(a, b), high = max(a, b);</span>
+<span class="cstat-no" title="statement not covered" >        var range = high.subtract(low);</span>
+<span class="cstat-no" title="statement not covered" >        if (range.isSmall) <span class="cstat-no" title="statement not covered" >return low.add(Math.round(Math.random() * range));</span></span>
+<span class="cstat-no" title="statement not covered" >        var length = range.value.length - 1;</span>
+<span class="cstat-no" title="statement not covered" >        var result = [], restricted = true;</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = length; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >            var top = restricted ? range.value[i] : BASE;</span>
+<span class="cstat-no" title="statement not covered" >            var digit = truncate(Math.random() * top);</span>
+<span class="cstat-no" title="statement not covered" >            result.unshift(digit);</span>
+<span class="cstat-no" title="statement not covered" >            if (digit &lt; top) <span class="cstat-no" title="statement not covered" >restricted = false;</span></span>
+        }
+<span class="cstat-no" title="statement not covered" >        result = arrayToSmall(result);</span>
+<span class="cstat-no" title="statement not covered" >        return low.add(typeof result === "number" ? new SmallInteger(result) : new BigInteger(result, false));</span>
+    }
+    var parseBase = <span class="fstat-no" title="function not covered" >function (text, base) {</span>
+<span class="cstat-no" title="statement not covered" >        var length = text.length;</span>
+<span class="cstat-no" title="statement not covered" >        if (2 &lt;= base &amp;&amp; base &lt;= 36) {</span>
+<span class="cstat-no" title="statement not covered" >            if (length &lt;= LOG_MAX_INT / Math.log(base)) {</span>
+<span class="cstat-no" title="statement not covered" >                return new SmallInteger(parseInt(text, base));</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        base = parseValue(base);</span>
+<span class="cstat-no" title="statement not covered" >        var digits = [];</span>
+<span class="cstat-no" title="statement not covered" >        var i;</span>
+<span class="cstat-no" title="statement not covered" >        var isNegative = text[0] === "-";</span>
+<span class="cstat-no" title="statement not covered" >        for (i = isNegative ? 1 : 0; i &lt; text.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            var c = text[i].toLowerCase(),</span>
+                charCode = c.charCodeAt(0);
+<span class="cstat-no" title="statement not covered" >            if (48 &lt;= charCode &amp;&amp; charCode &lt;= 57) <span class="cstat-no" title="statement not covered" >digits.push(parseValue(c));</span></span>
+            else <span class="cstat-no" title="statement not covered" >if (97 &lt;= charCode &amp;&amp; charCode &lt;= 122) <span class="cstat-no" title="statement not covered" >digits.push(parseValue(c.charCodeAt(0) - 87));</span></span>
+            else <span class="cstat-no" title="statement not covered" >if (c === "&lt;") {</span>
+<span class="cstat-no" title="statement not covered" >                var start = i;</span>
+<span class="cstat-no" title="statement not covered" >                do { <span class="cstat-no" title="statement not covered" >i++; </span>} while (text[i] !== "&gt;");</span>
+<span class="cstat-no" title="statement not covered" >                digits.push(parseValue(text.slice(start + 1, i)));</span>
+            }
+            else <span class="cstat-no" title="statement not covered" >throw new Error(c + " is not a valid character");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return parseBaseFromArray(digits, base, isNegative);</span>
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function parseBaseFromArray(digits, base, isNegative) {</span>
+<span class="cstat-no" title="statement not covered" >        var val = Integer[0], pow = Integer[1], i;</span>
+<span class="cstat-no" title="statement not covered" >        for (i = digits.length - 1; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >            val = val.add(digits[i].times(pow));</span>
+<span class="cstat-no" title="statement not covered" >            pow = pow.times(base);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return isNegative ? val.negate() : val;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function stringify(digit) {</span>
+<span class="cstat-no" title="statement not covered" >        var v = digit.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof v === "number") <span class="cstat-no" title="statement not covered" >v = [v];</span></span>
+<span class="cstat-no" title="statement not covered" >        if (v.length === 1 &amp;&amp; v[0] &lt;= 35) {</span>
+<span class="cstat-no" title="statement not covered" >            return "0123456789abcdefghijklmnopqrstuvwxyz".charAt(v[0]);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return "&lt;" + v + "&gt;";</span>
+    }
+<span class="fstat-no" title="function not covered" >    function toBase(n, base) {</span>
+<span class="cstat-no" title="statement not covered" >        base = bigInt(base);</span>
+<span class="cstat-no" title="statement not covered" >        if (base.isZero()) {</span>
+<span class="cstat-no" title="statement not covered" >            if (n.isZero()) <span class="cstat-no" title="statement not covered" >return "0";</span></span>
+<span class="cstat-no" title="statement not covered" >            throw new Error("Cannot convert nonzero numbers to base 0.");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (base.equals(-1)) {</span>
+<span class="cstat-no" title="statement not covered" >            if (n.isZero()) <span class="cstat-no" title="statement not covered" >return "0";</span></span>
+<span class="cstat-no" title="statement not covered" >            if (n.isNegative()) <span class="cstat-no" title="statement not covered" >return new Array(1 - n).join("10");</span></span>
+<span class="cstat-no" title="statement not covered" >            return "1" + new Array(+n).join("01");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var minusSign = "";</span>
+<span class="cstat-no" title="statement not covered" >        if (n.isNegative() &amp;&amp; base.isPositive()) {</span>
+<span class="cstat-no" title="statement not covered" >            minusSign = "-";</span>
+<span class="cstat-no" title="statement not covered" >            n = n.abs();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (base.equals(1)) {</span>
+<span class="cstat-no" title="statement not covered" >            if (n.isZero()) <span class="cstat-no" title="statement not covered" >return "0";</span></span>
+<span class="cstat-no" title="statement not covered" >            return minusSign + new Array(+n + 1).join(1);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var out = [];</span>
+<span class="cstat-no" title="statement not covered" >        var left = n, divmod;</span>
+<span class="cstat-no" title="statement not covered" >        while (left.isNegative() || left.compareAbs(base) &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >            divmod = left.divmod(base);</span>
+<span class="cstat-no" title="statement not covered" >            left = divmod.quotient;</span>
+<span class="cstat-no" title="statement not covered" >            var digit = divmod.remainder;</span>
+<span class="cstat-no" title="statement not covered" >            if (digit.isNegative()) {</span>
+<span class="cstat-no" title="statement not covered" >                digit = base.minus(digit).abs();</span>
+<span class="cstat-no" title="statement not covered" >                left = left.next();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            out.push(stringify(digit));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        out.push(stringify(left));</span>
+<span class="cstat-no" title="statement not covered" >        return minusSign + out.reverse().join("");</span>
+    }
+&nbsp;
+    BigInteger.prototype.toString = <span class="fstat-no" title="function not covered" >function (radix) {</span>
+<span class="cstat-no" title="statement not covered" >        if (radix === undefined) <span class="cstat-no" title="statement not covered" >radix = 10;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (radix !== 10) <span class="cstat-no" title="statement not covered" >return toBase(this, radix);</span></span>
+<span class="cstat-no" title="statement not covered" >        var v = this.value, l = v.length, str = String(v[--l]), zeros = "0000000", digit;</span>
+<span class="cstat-no" title="statement not covered" >        while (--l &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >            digit = String(v[l]);</span>
+<span class="cstat-no" title="statement not covered" >            str += zeros.slice(digit.length) + digit;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var sign = this.sign ? "-" : "";</span>
+<span class="cstat-no" title="statement not covered" >        return sign + str;</span>
+    };
+    SmallInteger.prototype.toString = <span class="fstat-no" title="function not covered" >function (radix) {</span>
+<span class="cstat-no" title="statement not covered" >        if (radix === undefined) <span class="cstat-no" title="statement not covered" >radix = 10;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (radix != 10) <span class="cstat-no" title="statement not covered" >return toBase(this, radix);</span></span>
+<span class="cstat-no" title="statement not covered" >        return String(this.value);</span>
+    };
+&nbsp;
+    BigInteger.prototype.valueOf = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return +this.toString();</span>
+    };
+    BigInteger.prototype.toJSNumber = BigInteger.prototype.valueOf;
+&nbsp;
+    SmallInteger.prototype.valueOf = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.value;</span>
+    };
+    SmallInteger.prototype.toJSNumber = SmallInteger.prototype.valueOf;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function parseStringValue(v) {</span>
+<span class="cstat-no" title="statement not covered" >            if (isPrecise(+v)) {</span>
+<span class="cstat-no" title="statement not covered" >                var x = +v;</span>
+<span class="cstat-no" title="statement not covered" >                if (x === truncate(x))</span>
+<span class="cstat-no" title="statement not covered" >                    return new SmallInteger(x);</span>
+<span class="cstat-no" title="statement not covered" >                throw "Invalid integer: " + v;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var sign = v[0] === "-";</span>
+<span class="cstat-no" title="statement not covered" >            if (sign) <span class="cstat-no" title="statement not covered" >v = v.slice(1);</span></span>
+<span class="cstat-no" title="statement not covered" >            var split = v.split(/e/i);</span>
+<span class="cstat-no" title="statement not covered" >            if (split.length &gt; 2) <span class="cstat-no" title="statement not covered" >throw new Error("Invalid integer: " + split.join("e"));</span></span>
+<span class="cstat-no" title="statement not covered" >            if (split.length === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                var exp = split[1];</span>
+<span class="cstat-no" title="statement not covered" >                if (exp[0] === "+") <span class="cstat-no" title="statement not covered" >exp = exp.slice(1);</span></span>
+<span class="cstat-no" title="statement not covered" >                exp = +exp;</span>
+<span class="cstat-no" title="statement not covered" >                if (exp !== truncate(exp) || !isPrecise(exp)) <span class="cstat-no" title="statement not covered" >throw new Error("Invalid integer: " + exp + " is not a valid exponent.");</span></span>
+<span class="cstat-no" title="statement not covered" >                var text = split[0];</span>
+<span class="cstat-no" title="statement not covered" >                var decimalPlace = text.indexOf(".");</span>
+<span class="cstat-no" title="statement not covered" >                if (decimalPlace &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    exp -= text.length - decimalPlace - 1;</span>
+<span class="cstat-no" title="statement not covered" >                    text = text.slice(0, decimalPlace) + text.slice(decimalPlace + 1);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (exp &lt; 0) <span class="cstat-no" title="statement not covered" >throw new Error("Cannot include negative exponent part for integers");</span></span>
+<span class="cstat-no" title="statement not covered" >                text += (new Array(exp + 1)).join("0");</span>
+<span class="cstat-no" title="statement not covered" >                v = text;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var isValid = /^([0-9][0-9]*)$/.test(v);</span>
+<span class="cstat-no" title="statement not covered" >            if (!isValid) <span class="cstat-no" title="statement not covered" >throw new Error("Invalid integer: " + v);</span></span>
+<span class="cstat-no" title="statement not covered" >            var r = [], max = v.length, l = LOG_BASE, min = max - l;</span>
+<span class="cstat-no" title="statement not covered" >            while (max &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                r.push(+v.slice(min, max));</span>
+<span class="cstat-no" title="statement not covered" >                min -= l;</span>
+<span class="cstat-no" title="statement not covered" >                if (min &lt; 0) <span class="cstat-no" title="statement not covered" >min = 0;</span></span>
+<span class="cstat-no" title="statement not covered" >                max -= l;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            trim(r);</span>
+<span class="cstat-no" title="statement not covered" >            return new BigInteger(r, sign);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function parseNumberValue(v) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isPrecise(v)) {</span>
+<span class="cstat-no" title="statement not covered" >            if (v !== truncate(v)) <span class="cstat-no" title="statement not covered" >throw new Error(v + " is not an integer.");</span></span>
+<span class="cstat-no" title="statement not covered" >            return new SmallInteger(v);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return parseStringValue(v.toString());</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function parseValue(v) {</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof v === "number") {</span>
+<span class="cstat-no" title="statement not covered" >            return parseNumberValue(v);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (typeof v === "string") {</span>
+<span class="cstat-no" title="statement not covered" >            return parseStringValue(v);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return v;</span>
+    }
+    // Pre-define numbers in range [-999,999]
+    for (var i = 0; i &lt; 1000; i++) {
+        Integer[i] = new SmallInteger(i);
+        if (i &gt; 0) Integer[-i] = new SmallInteger(-i);
+    }
+    // Backwards compatibility
+    Integer.one = Integer[1];
+    Integer.zero = Integer[0];
+    Integer.minusOne = Integer[-1];
+    Integer.max = max;
+    Integer.min = min;
+    Integer.gcd = gcd;
+    Integer.lcm = lcm;
+    Integer.isInstance = <span class="fstat-no" title="function not covered" >function (x) {</span> <span class="cstat-no" title="statement not covered" >return x instanceof BigInteger || x instanceof SmallInteger; </span>};
+    Integer.randBetween = randBetween;
+&nbsp;
+    Integer.fromArray = <span class="fstat-no" title="function not covered" >function (digits, base, isNegative) {</span>
+<span class="cstat-no" title="statement not covered" >        return parseBaseFromArray(digits.map(parseValue), parseValue(base || 10), isNegative);</span>
+    };
+&nbsp;
+    return Integer;
+})();
+&nbsp;
+// Node.js check
+<span class="missing-if-branch" title="else path not taken" >E</span>if (typeof module !== "undefined" &amp;&amp; module.hasOwnProperty("exports")) {
+    module.exports = bigInt;
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sat Apr 22 2017 17:09:09 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
